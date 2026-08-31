@@ -1,0 +1,198 @@
+# ==========================================
+# AP Automation System - .gitignore
+# ==========================================
+
+
+# ==========================================
+# Environment Files
+# ==========================================
+
+# Main environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Keep environment example file
+!.env.example
+
+
+# ==========================================
+# Python / FastAPI Backend
+# ==========================================
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Python virtual environments
+venv/
+env/
+.venv/
+myenv/
+
+# Pytest cache
+.pytest_cache/
+pytest.ini
+
+# Coverage reports
+.coverage
+htmlcov/
+
+# Backend cache folders
+backend/__pycache__/
+backend/app/__pycache__/
+
+
+# ==========================================
+# Next.js Frontend
+# ==========================================
+
+# Node.js dependencies
+node_modules/
+
+# Next.js build folder
+.next/
+
+# Production build folders
+dist/
+build/
+out/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# NPM / Yarn logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+# ==========================================
+# Docker
+# ==========================================
+
+# Docker override files
+docker-compose.override.yml
+
+# Docker local volumes
+postgres_data/
+pgadmin_data/
+
+
+# ==========================================
+# IDE / Editor Files
+# ==========================================
+
+# VS Code
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# MacOS files
+.DS_Store
+
+# Windows files
+Thumbs.db
+
+
+# ==========================================
+# Logs
+# ==========================================
+
+# Log files
+*.log
+
+
+# ==========================================
+# Temporary Files
+# ==========================================
+
+# Temporary folders
+tmp/
+temp/
+scratch/
+current_structure.txt
+
+# Cache folders
+.cache/
+
+
+# ==========================================
+# Database
+# ==========================================
+
+# SQLite databases
+*.sqlite3
+
+# Database dumps
+*.dump
+
+
+# ==========================================
+# AI Outputs (Optional)
+# ==========================================
+
+# Generated AI outputs
+ai/outputs/
+
+# Graphify output
+graphify-out/
+
+# Local manual verification guides and progress logs
+local_docs/
+
+# Project Journey and Testing Documents
+AP_Automation_Project_Journey.md
+AP_Automation_Manual_Testing.md
+project_study.md
+
+# ==========================================
+# Testing (Ignore Completely)
+# ==========================================
+testing/
+
+# ==========================================
+# Real Invoices Data (Ignore Completely)
+# ==========================================
+data/real_invoices/
+
+# ==========================================
+# Agent & AI Assistant Tooling
+# ==========================================
+.agents/
+.gemini/
+GEMINI.md
+gemini.md
+
+# ==========================================
+# Experiments & Local Testing Databases
+# ==========================================
+experiments/
+*.db
+
+# ==========================================
+# Local Documentation (never commit)
+# ==========================================
+
+# Generated documentation folder
+docs/
+
+# Diagram source files
+*.drawio
+*.mmd
+*.puml
+
+# Exported document formats
+*.pdf
+*.docx
+*.xlsx
+
+# ==========================================
+# Local runtime files and backups
+# ==========================================
+backend/storage_files/
+backend/backups/
+backend/celerybeat-schedule

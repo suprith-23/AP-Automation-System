@@ -1,0 +1,31 @@
+{
+    "alias_map": {
+        "supplier": "seller_name",
+        "supplier_name": "seller_name",
+        "company_name": "seller_name",
+        "vendor_name": "seller_name",
+        "seller": "seller_name",
+        "bill_from": "seller_name",
+        "party_name": "seller_name",
+        "billed_by": "seller_name",
+        
+        "bill_to": "buyer_name",
+        "customer_name": "buyer_name",
+        "client_name": "buyer_name",
+        
+        "tax_amount": "total_tax_amount",
+        "gst": "total_tax_amount",
+        "gst_amount": "total_tax_amount",
+        "taxable_value": "total_taxable_value",
+        "taxable_amount": "total_taxable_value",
+        "subtotal": "total_taxable_value",
+        "net_total": "total_invoice_value",
+        "grand_total": "total_invoice_value",
+        "total": "total_invoice_value"
+    },
+    "numeric_fields": [
+        "total_taxable_value", "total_cgst_value", "total_sgst_value",
+        "total_igst_value", "total_ces_value", "total_invoice_value",
+        "total_tax_amount"
+    ]
+}

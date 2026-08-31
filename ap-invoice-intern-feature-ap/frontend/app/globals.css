@@ -1,0 +1,625 @@
+/* Fonts are loaded via next/font in app/layout.tsx — no @import needed here. */
+
+/* Disable and hide the browser-default up/down spinner buttons on number inputs */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Design Tokens ── */
+:root {
+  /* Core palette — light mode */
+  --fw-green:   #39E35D;
+  --fw-pink:    #FF3EA5;
+  --fw-purple:  #9B6BFF;
+  --fw-blue:    #2E8BFF;
+  --fw-teal:    #00D9C0;
+  --fw-amber:   #FFB800;
+  --fw-red:     #FF3B3B;
+  --fw-sky:     #0ea5e9;
+  --fw-orange:  #f97316;
+  --fw-black:   #0A0A0A;
+  --fw-white:   #FFFFFF;
+  --fw-grey:    #EDEDED;
+  --fw-grey-muted: #6B7280;
+
+  /* Deep fills (colored card dark variants mapped to light contrast/dark mode) */
+  --fw-green-deep:  #123B22;
+  --fw-pink-deep:   #3A1B2E;
+  --fw-purple-deep: #241B3D;
+  --fw-teal-deep:   #0F3D38;
+  --fw-amber-deep:  #3D2E05;
+
+  /* Surfaces */
+  --bg-page:    #FAFAFC;
+  --bg-surface: #FFFFFF;
+  --bg-inset:   #F3F3F6;
+
+  /* Status */
+  --status-approved: #39E35D;
+  --status-rejected: #FF3B3B;
+  --status-pending:  #FFB800;
+  --status-info:     #2E8BFF;
+
+  /* Canonical Design Palette */
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+  --color-neutral: #6B7280;
+
+  /* Chart Series Colors */
+  --chart-1: #3B82F6;
+  --chart-2: #EC4899;
+  --chart-3: #8B5CF6;
+  --chart-4: #14B8A6;
+  --chart-5: #F59E0B;
+  --chart-6: #EF4444;
+
+  /* Elevation Shadows */
+  --elevation-none: none;
+  --elevation-low:  0 2px 8px rgba(0,0,0,0.04);
+  --elevation-med:  0 6px 16px rgba(0,0,0,0.08);
+  --elevation-high: 0 12px 32px rgba(0,0,0,0.12);
+  --ai-card-glow:   0 8px 30px rgba(155,107,255,0.25);
+
+  /* Interaction */
+  --focus-ring:       0 0 0 3px rgba(46, 139, 255, 0.45);
+  --hover-overlay:    rgba(0, 0, 0, 0.04);
+  --transition-std:   200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast:  150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:  300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark {
+  /* Core palette — dark mode */
+  --fw-green:   #4AFF7A;
+  --fw-pink:    #FF5CB8;
+  --fw-purple:  #B388FF;
+  --fw-blue:    #4FA3FF;
+  --fw-teal:    #1FF5DB;
+  --fw-amber:   #FFCB3D;
+  --fw-red:     #FF5C5C;
+  --fw-sky:     #38bdf8;
+  --fw-orange:  #fb923c;
+  --fw-black:   #000000;
+  --fw-white:   #1A1A1A;
+  --fw-grey:    #333333;
+  --fw-grey-muted: #9CA3AF;
+
+  /* Surfaces */
+  --bg-page:    #0B0B0C;
+  --bg-surface: #121214;
+  --bg-inset:   #161619;
+
+  /* Status */
+  --status-approved: #4AFF7A;
+  --status-rejected: #FF5C5C;
+  --status-pending:  #FFCB3D;
+  --status-info:     #4FA3FF;
+
+  /* Canonical Design Palette */
+  --color-success: #4ADE80;
+  --color-warning: #FCD34D;
+  --color-error: #FCA5A5;
+  --color-info: #93C5FD;
+  --color-neutral: #9CA3AF;
+
+  /* Chart Series Colors */
+  --chart-1: #93C5FD;
+  --chart-2: #F472B6;
+  --chart-3: #818CF8;
+  --chart-4: #5EEAD4;
+  --chart-5: #FCD34D;
+  --chart-6: #FCA5A5;
+
+  /* Elevation Shadows */
+  --elevation-none: none;
+  --elevation-low:  0 2px 8px rgba(0,0,0,0.30);
+  --elevation-med:  0 6px 16px rgba(0,0,0,0.40);
+  --elevation-high: 0 12px 32px rgba(0,0,0,0.50);
+  --ai-card-glow:   0 8px 30px rgba(179,136,255,0.35);
+
+  /* Interaction */
+  --focus-ring:    0 0 0 3px rgba(79, 163, 255, 0.45);
+  --hover-overlay: rgba(255, 255, 255, 0.04);
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-page);
+    color: #18181B;
+    /* Use CSS variables injected by next/font — falls back to system stack */
+    font-family: var(--font-plus-jakarta, var(--font-inter, system-ui, sans-serif));
+    letter-spacing: -0.01em;
+    overflow-x: hidden;
+    min-height: 100vh;
+    /* NOTE: No transition on background-color here — it causes the page
+     * background to animate on every navigation, creating a visible fade.
+     * Theme toggling is instant via the inline script in layout.tsx. */
+  }
+
+  .dark body {
+    background-color: var(--bg-page);
+    color: #fafafa;
+  }
+
+  /* Global focus-visible ring for keyboard users */
+  *:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: 9999px;
+  }
+}
+
+@layer components {
+
+  /* ─────────────────────────────────────────────────────────────
+   * BUTTON SYSTEM — Every variant uses stadium (pill) geometry
+   * ──────────────────────────────────────────────────────────── */
+  .btn-base {
+    @apply inline-flex items-center justify-center gap-2 font-bold
+           rounded-full whitespace-nowrap select-none
+           transition-all duration-200 outline-none
+           disabled:opacity-40 disabled:pointer-events-none;
+    min-height: 44px; /* WCAG touch target */
+    padding: 0 1.25rem;
+  }
+
+  .btn-sm {
+    @apply text-xs;
+    min-height: 34px;
+    padding: 0 0.875rem;
+    font-size: 0.75rem;
+  }
+
+  .btn-md {
+    @apply text-sm;
+    min-height: 40px;
+    padding: 0 1.125rem;
+  }
+
+  .btn-lg {
+    @apply text-base;
+    min-height: 48px;
+    padding: 0 1.5rem;
+  }
+
+  /* Primary — solid fill */
+  .btn-primary {
+    @apply btn-base bg-[#0A0A0A] text-white
+           hover:bg-zinc-800 active:scale-[0.97];
+  }
+  .dark .btn-primary {
+    @apply bg-white text-[#0A0A0A] hover:bg-zinc-100;
+  }
+
+  /* Secondary — transparent + border */
+  .btn-secondary {
+    @apply btn-base bg-transparent border-2 border-[#0A0A0A] text-[#0A0A0A]
+           hover:bg-[#0A0A0A] hover:text-white active:scale-[0.97];
+  }
+  .dark .btn-secondary {
+    @apply border-white text-white hover:bg-white hover:text-[#0A0A0A];
+  }
+
+  /* Destructive — red */
+  .btn-destructive {
+    @apply btn-base bg-[#EF4444] text-white
+           hover:bg-[#DC2626] active:scale-[0.97];
+  }
+  .dark .btn-destructive {
+    @apply bg-[#F87171] text-white hover:bg-[#EF4444];
+  }
+
+  /* Ghost — subtle hover only */
+  .btn-ghost {
+    @apply btn-base bg-transparent text-zinc-600 dark:text-zinc-400
+           hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-[0.97];
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+   * ICON BUTTON — Perfect circle, centered icon
+   * ──────────────────────────────────────────────────────────── */
+  .btn-icon {
+    @apply inline-flex items-center justify-center rounded-full
+           transition-all duration-200 outline-none
+           disabled:opacity-40 disabled:pointer-events-none
+           hover:scale-[1.06] active:scale-[0.96]
+           focus-visible:ring-2 focus-visible:ring-offset-2;
+    min-width:  44px;
+    min-height: 44px;
+  }
+
+  .btn-icon-sm {
+    min-width:  28px !important;
+    min-height: 28px !important;
+  }
+
+  .btn-icon-md {
+    min-width:  36px !important;
+    min-height: 36px !important;
+  }
+
+  .btn-icon-dark {
+    @apply bg-[#0A0A0A] text-white dark:bg-white dark:text-[#0A0A0A];
+  }
+
+  .btn-icon-ghost {
+    @apply bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300
+           hover:bg-zinc-200 dark:hover:bg-zinc-700;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+   * SEARCH BAR — Pill shape, consistent h-10 everywhere
+   * ──────────────────────────────────────────────────────────── */
+  .search-pill {
+    @apply flex items-center gap-2 h-10
+           bg-zinc-50 dark:bg-zinc-900
+           border border-zinc-200 dark:border-zinc-800
+           rounded-full px-4
+           transition-all duration-200
+           focus-within:border-zinc-400 dark:focus-within:border-zinc-600
+           focus-within:bg-white dark:focus-within:bg-zinc-800/70;
+  }
+
+  .search-pill input {
+    @apply flex-1 bg-transparent text-sm text-zinc-800 dark:text-white
+           placeholder-zinc-400 dark:placeholder-zinc-500 outline-none;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+   * STATUS PILL — Filled pill + text label, never dot-only
+   * ──────────────────────────────────────────────────────────── */
+  .status-pill {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full
+           text-[11px] font-bold tracking-wide whitespace-nowrap;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+   * TABLE HEADER — Single rounded pill spanning full table width
+   * ──────────────────────────────────────────────────────────── */
+  .table-header-pill {
+    @apply flex items-center gap-3 px-5 py-3
+           rounded-2xl w-full
+           text-[10px] font-black uppercase tracking-widest;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+   * DRAWER — Right-side slide-over panel
+   * ──────────────────────────────────────────────────────────── */
+  .drawer-backdrop {
+    @apply fixed inset-0 z-50
+           bg-black/40 backdrop-blur-[2px]
+           animate-fade-backdrop;
+  }
+
+  .drawer-panel {
+    @apply fixed top-0 right-0 z-50 h-full
+           bg-white dark:bg-[#111111]
+           flex flex-col overflow-hidden
+           shadow-2xl;
+    width: min(520px, 100vw);
+    animation: slideInRight 220ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .drawer-panel.closing {
+    animation: slideOutRight 180ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* Mobile: full-width */
+  @media (max-width: 640px) {
+    .drawer-panel {
+      width: 100vw;
+      border-radius: 0;
+    }
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+   * SEGMENTED CONTROL — Outer pill container + floating inner pill
+   * ──────────────────────────────────────────────────────────── */
+  .segmented-control {
+    @apply inline-flex items-center gap-0.5 p-1
+           bg-zinc-100 dark:bg-zinc-800
+           rounded-full;
+  }
+
+  .segmented-control-item {
+    @apply px-4 py-1.5 rounded-full text-xs font-bold
+           transition-all duration-200 outline-none
+           text-zinc-500 dark:text-zinc-400
+           hover:text-zinc-800 dark:hover:text-zinc-100;
+  }
+
+  .segmented-control-item.active {
+    @apply bg-white dark:bg-zinc-700 text-zinc-900 dark:text-white
+           shadow-sm;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+   * FORM INPUTS — Pill or large rounded rect, never sharp
+   * ──────────────────────────────────────────────────────────── */
+  .input-pill {
+    @apply w-full h-11 px-4 rounded-full
+           bg-white dark:bg-zinc-800
+           border border-zinc-200 dark:border-zinc-700
+           text-sm font-medium text-zinc-900 dark:text-zinc-100
+           placeholder-zinc-400 dark:placeholder-zinc-500
+           outline-none transition-all duration-200
+           focus:border-zinc-500 dark:focus:border-zinc-500
+           focus:ring-2 focus:ring-zinc-200 dark:focus:ring-zinc-700
+           focus:bg-white dark:focus:bg-zinc-800;
+  }
+
+  .input-rounded {
+    @apply w-full px-4 py-3 rounded-[14px]
+           bg-white dark:bg-zinc-800
+           border border-zinc-200 dark:border-zinc-700
+           text-sm font-medium text-zinc-900 dark:text-zinc-100
+           placeholder-zinc-400 dark:placeholder-zinc-500
+           outline-none transition-all duration-200
+           focus:border-zinc-500 dark:focus:border-zinc-500
+           focus:ring-2 focus:ring-zinc-200 dark:focus:ring-zinc-700
+           focus:bg-white dark:focus:bg-zinc-800;
+  }
+
+  /* Label */
+  .input-label {
+    @apply block text-xs font-bold text-zinc-600 dark:text-zinc-400
+           mb-1.5 uppercase tracking-wider;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+   * PROGRESS BAR — Stadium shape
+   * ──────────────────────────────────────────────────────────── */
+  .progress-track {
+    @apply w-full h-2 rounded-full overflow-hidden
+           bg-zinc-100 dark:bg-zinc-800;
+  }
+
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-500;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+   * MICRO-TEXTURE OVERLAY CLASS (Subtle Noise/Grain)
+   * ──────────────────────────────────────────────────────────── */
+  .fw-texture-grain {
+    position: relative;
+    overflow: hidden;
+  }
+  .fw-texture-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+    opacity: 0.035;
+    border-radius: inherit;
+    z-index: 1;
+  }
+  .dark .fw-texture-grain::after {
+    opacity: 0.055;
+  }
+
+  /* CARD — Rounded rectangle container, never clickable */
+  .fw-card {
+    @apply rounded-2xl bg-white dark:bg-[#121214]
+           border border-zinc-200 dark:border-zinc-800/80
+           p-6 shadow-sm transition-colors duration-200;
+  }
+
+  .fw-card-colored {
+    @apply rounded-2xl p-5 flex flex-col gap-4;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+   * GROUP ROW HEADER — Collapsible table section
+   * ──────────────────────────────────────────────────────────── */
+  .group-row-header {
+    @apply w-full flex items-center gap-2 px-4 py-2.5
+           rounded-xl mx-3
+           bg-zinc-50 dark:bg-zinc-800/60
+           text-xs font-bold text-zinc-500 dark:text-zinc-400
+           uppercase tracking-widest
+           hover:bg-zinc-100 dark:hover:bg-zinc-800
+           transition-colors duration-150;
+    width: calc(100% - 1.5rem);
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+   * PREMIUM CARD — legacy compat (border still needed in some places)
+   * ──────────────────────────────────────────────────────────── */
+  .premium-card {
+    border-radius: 16px;
+    background-color: #ffffff;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark .premium-card {
+    background-color: #18181b;
+  }
+
+  /* ── Glass Card (Updated to solid surface per Card.tsx reference) ── */
+  .glass-card {
+    border-radius: 16px;
+    background-color: #ffffff;
+    border: 1px solid #EDEDED;
+  }
+  .dark .glass-card {
+    background-color: #1A1A1A;
+    border: 1px solid #333333;
+  }
+
+  /* ── Status row tint classes ── */
+  .inv-row-failed {
+    border-left: 4px solid var(--color-error);
+  }
+  .inv-row-pending {
+    border-left: 4px solid var(--color-warning);
+  }
+  .inv-row-approved {
+    border-left: 4px solid var(--color-success);
+  }
+  .inv-row-default {
+    border-left: 4px solid transparent;
+  }
+
+  /* ── Shimmer skeleton ── */
+  .shimmer {
+    background: linear-gradient(90deg, #f4f4f5 25%, #ffffff 50%, #f4f4f5 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  .dark .shimmer {
+    background: linear-gradient(90deg, #27272a 25%, #3f3f46 50%, #27272a 75%);
+    background-size: 200% 100%;
+  }
+}
+
+/* ── Pattern fills (organic textures) ── */
+.pat-stripes-blue {
+  background-color: #3b82f6;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 6 Q5 0 10 6 T20 6' stroke='rgba(255,255,255,0.12)' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+}
+
+.pat-dots-info {
+  background-color: #4F46E5;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1' fill='rgba(255,255,255,0.12)'/%3E%3Ccircle cx='8' cy='8' r='1' fill='rgba(255,255,255,0.12)'/%3E%3C/svg%3E");
+}
+
+.pat-waves-warning {
+  background-color: #F59E0B;
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 8 C 4 12 6 4 10 8 S 14 4 16 8' stroke='rgba(255,255,255,0.12)' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+}
+
+.pat-stripes-green {
+  background-color: #22c55e;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 6 Q5 0 10 6 T20 6' stroke='rgba(255,255,255,0.12)' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+}
+
+.pat-stripes-teal {
+  background-color: #14b8a6;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1' fill='rgba(255,255,255,0.12)'/%3E%3Ccircle cx='8' cy='8' r='1' fill='rgba(255,255,255,0.12)'/%3E%3C/svg%3E");
+}
+
+.pat-dots-amber {
+  background-color: #F59E0B;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='3' cy='3' r='1.2' fill='rgba(255,255,255,0.12)'/%3E%3Ccircle cx='9' cy='9' r='1.2' fill='rgba(255,255,255,0.12)'/%3E%3C/svg%3E");
+}
+
+/* ── Custom Scrollbars ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #D4D4D8; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #A1A1AA; }
+
+.dark ::-webkit-scrollbar-thumb { background: #3F3F46; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #71717A; }
+
+/* ── Animations ── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position:  200% 0; }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(100%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideOutRight {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(100%); }
+}
+
+@keyframes fadeBackdrop {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes logoPop {
+  0% { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-fade-in        { animation: fadeIn 250ms cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-slide-in-right { animation: slideInRight 220ms cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+.animate-scale-in       { animation: scaleIn 150ms cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-fade-backdrop  { animation: fadeBackdrop 200ms cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+.animate-logo-pop       { animation: logoPop 380ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ── Reduced Motion — honour system preference ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .shimmer {
+    animation: none;
+    background: #f4f4f5;
+  }
+
+  .dark .shimmer {
+    background: #27272a;
+  }
+}
+
+/* ── Layout Utilities ── */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Settings Panel Contrast Override ── */
+.settings-toggle-title {
+  color: #1f2937 !important; /* dark slate in light mode */
+}
+.dark .settings-toggle-title {
+  color: #ffffff !important; /* pure white in dark mode */
+}
+.settings-toggle-desc {
+  color: #4b5563 !important; /* slate in light mode */
+}
+.dark .settings-toggle-desc {
+  color: #d4d4d8 !important; /* bright off-white in dark mode */
+}

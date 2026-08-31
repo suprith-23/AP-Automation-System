@@ -1,0 +1,122 @@
+apiVersion: 1
+
+groups:
+  - orgId: 1
+    name: 'AP Platform Alerts'
+    folder: 'Alerts'
+    interval: 10s
+    rules:
+      - uid: 'sla_breach_spike'
+        title: 'SLA Breach Rate Spike'
+        condition: 'A'
+        data:
+          - refId: 'A'
+            relativeTimeRange:
+              from: 300
+              to: 0
+            datasourceUid: 'Prometheus'
+            model:
+              expr: 'sum(rate(workflow_sla_breach_total[5m])) > 0.05'
+              intervalMs: 10000
+              maxDataPoints: 43200
+              refId: 'A'
+        noDataState: 'NoData'
+        execErrState: 'Error'
+        for: '1m'
+        annotations:
+          summary: 'High SLA Breach Rate Spike detected'
+          description: 'SLA breaches have spike to {{ $values.A.Value }} per second in the last 5 minutes.'
+        labels:
+          severity: 'critical'
+
+      - uid: 'extraction_confidence_drop'
+        title: 'Extraction Confidence Drop'
+        condition: 'A'
+        data:
+          - refId: 'A'
+            relativeTimeRange:
+              from: 300
+              to: 0
+            datasourceUid: 'Prometheus'
+            model:
+              expr: 'histogram_quantile(0.50, sum(rate(extraction_confidence_score_bucket[5m])) by (le)) < 0.70'
+              intervalMs: 10000
+              maxDataPoints: 43200
+              refId: 'A'
+        noDataState: 'NoData'
+        execErrState: 'Error'
+        for: '2m'
+        annotations:
+          summary: 'Median AI Extraction Confidence has dropped'
+          description: 'AI extraction confidence score has dropped below 70% threshold: {{ $values.A.Value }}.'
+        labels:
+          severity: 'warning'
+
+      - uid: 'api_key_exhaustion'
+        title: 'API Key Pool Exhaustion'
+        condition: 'A'
+        data:
+          - refId: 'A'
+            relativeTimeRange:
+              from: 300
+              to: 0
+            datasourceUid: 'Prometheus'
+            model:
+              expr: 'sum(rate(llm_api_key_pool_exhaustion_total[5m])) > 0'
+              intervalMs: 10000
+              maxDataPoints: 43200
+              refId: 'A'
+        noDataState: 'NoData'
+        execErrState: 'Error'
+        for: '10s'
+        annotations:
+          summary: 'LLM Key Pool Rotation/Exhaustion Event'
+          description: 'Multi-tenant API keys are undergoing rapid cooldown rotations due to rate limits or invalid status.'
+        labels:
+          severity: 'critical'
+
+      - uid: 'celery_queue_backlog'
+        title: 'Celery Queue Backlog'
+        condition: 'A'
+        data:
+          - refId: 'A'
+            relativeTimeRange:
+              from: 300
+              to: 0
+            datasourceUid: 'Prometheus'
+            model:
+              expr: 'celery_queue_depth > 50'
+              intervalMs: 10000
+              maxDataPoints: 43200
+              refId: 'A'
+        noDataState: 'NoData'
+        execErrState: 'Error'
+        for: '5m'
+        annotations:
+          summary: 'Celery queue depth backlog is high'
+          description: 'Background Celery ingestion tasks queue length is currently {{ $values.A.Value }}.'
+        labels:
+          severity: 'warning'
+
+      - uid: 'api_error_rate_5xx'
+        title: 'API 5xx Error Spike'
+        condition: 'A'
+        data:
+          - refId: 'A'
+            relativeTimeRange:
+              from: 300
+              to: 0
+            datasourceUid: 'Prometheus'
+            model:
+              expr: 'sum(rate(api_error_rate_5xx[5m])) > 0.1'
+              intervalMs: 10000
+              maxDataPoints: 43200
+              refId: 'A'
+        noDataState: 'NoData'
+        execErrState: 'Error'
+        for: '1m'
+        annotations:
+          summary: 'FastAPI backend returning high 5xx error rates'
+          description: 'HTTP 5xx server errors rate has spiked to {{ $values.A.Value }} per second in last 5m.'
+        labels:
+          severity: 'critical'

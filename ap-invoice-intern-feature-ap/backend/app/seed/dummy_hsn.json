@@ -1,0 +1,90 @@
+[
+  {
+    "hsn_code": "84713010",
+    "description": "Personal computers, laptops, and desktop computer systems for automatic data processing",
+    "tax_rate": 18.0,
+    "cgst_rate": 9.0,
+    "sgst_rate": 9.0,
+    "igst_rate": 18.0
+  },
+  {
+    "hsn_code": "998311",
+    "description": "Management consulting services, including advisory, guidance and operational assistance services provided to businesses for strategy and organizational planning",
+    "tax_rate": 18.0,
+    "cgst_rate": 9.0,
+    "sgst_rate": 9.0,
+    "igst_rate": 18.0
+  },
+  {
+    "hsn_code": "84013000",
+    "description": "Nuclear reactors fuel elements (cartridges), non-irradiated, including components specifically designed or prepared for reactor insertion",
+    "tax_rate": 12.0,
+    "cgst_rate": 6.0,
+    "sgst_rate": 6.0,
+    "igst_rate": 12.0
+  },
+  {
+    "hsn_code": "998313",
+    "description": "Information technology consulting and support services, including systems integration, network management, software installation and hardware technical support",
+    "tax_rate": 18.0,
+    "cgst_rate": 9.0,
+    "sgst_rate": 9.0,
+    "igst_rate": 18.0
+  },
+  {
+    "hsn_code": "85171200",
+    "description": "Telephones for cellular networks or for other wireless networks, including smartphones and smart mobile communication devices",
+    "tax_rate": 18.0,
+    "cgst_rate": 9.0,
+    "sgst_rate": 9.0,
+    "igst_rate": 18.0
+  },
+  {
+    "hsn_code": "84713020",
+    "description": "Tablet computers, mobile personal computers, and portable handheld computer terminals with touch input displays",
+    "tax_rate": 18.0,
+    "cgst_rate": 9.0,
+    "sgst_rate": 9.0,
+    "igst_rate": 18.0
+  },
+  {
+    "hsn_code": "998314",
+    "description": "Software programming, development and design services, including custom software customization, coding, system maintenance and web application engineering",
+    "tax_rate": 18.0,
+    "cgst_rate": 9.0,
+    "sgst_rate": 9.0,
+    "igst_rate": 18.0
+  },
+  {
+    "hsn_code": "85044090",
+    "description": "Static converters, electrical inverters, power adaptors, uninterruptible power supplies (UPS) and battery charging modules",
+    "tax_rate": 18.0,
+    "cgst_rate": 9.0,
+    "sgst_rate": 9.0,
+    "igst_rate": 18.0
+  },
+  {
+    "hsn_code": "85285900",
+    "description": "Other color video monitors, computer displays, liquid crystal display screens, and flat panel visual indicator displays",
+    "tax_rate": 18.0,
+    "cgst_rate": 9.0,
+    "sgst_rate": 9.0,
+    "igst_rate": 18.0
+  },
+  {
+    "hsn_code": "48025590",
+    "description": "Other uncoated writing, printing, or graphic paper, in rolls or sheets, suitable for copying, document imaging and stationery products",
+    "tax_rate": 12.0,
+    "cgst_rate": 6.0,
+    "sgst_rate": 6.0,
+    "igst_rate": 12.0
+  },
+  {
+    "hsn_code": "996411",
+    "description": "Local passenger transit services, including taxi services, radio cab bookings, and scheduled commuter transit by road transport",
+    "tax_rate": 5.0,
+    "cgst_rate": 2.5,
+    "sgst_rate": 2.5,
+    "igst_rate": 5.0
+  }
+]

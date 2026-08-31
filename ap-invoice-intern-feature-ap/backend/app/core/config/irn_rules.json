@@ -1,0 +1,8 @@
+{
+  "irn_length": 64,
+  "irn_format_pattern": "^[0-9a-fA-F]{64}$",
+  "prevent_duplicates": true,
+  "check_date_consistency": true,
+  "max_future_days": 0,
+  "max_past_days": 30
+}

@@ -1,0 +1,76 @@
+{
+  "rules": [
+    {
+      "section_code": "194C",
+      "description": "Payments to Contractors",
+      "rate_with_pan": 1.0,
+      "rate_without_pan": 20.0,
+      "single_threshold": 30000.0,
+      "aggregate_threshold": 100000.0,
+      "effective_from": "2026-04-01",
+      "effective_to": "2027-03-31",
+      "vendor_categories": ["Contractor", "Logistics", "Transporter"],
+      "expense_categories": ["Operations", "Maintenance"]
+    },
+    {
+      "section_code": "194J",
+      "description": "Professional or Technical Services",
+      "rate_with_pan": 10.0,
+      "rate_without_pan": 20.0,
+      "single_threshold": 30000.0,
+      "aggregate_threshold": 30000.0,
+      "effective_from": "2026-04-01",
+      "effective_to": "2027-03-31",
+      "vendor_categories": ["Professional", "Consultant", "Technical Service Provider"],
+      "expense_categories": ["Legal", "Consulting", "Software Services"]
+    },
+    {
+      "section_code": "194H",
+      "description": "Commission or Brokerage",
+      "rate_with_pan": 5.0,
+      "rate_without_pan": 20.0,
+      "single_threshold": 15000.0,
+      "aggregate_threshold": 15000.0,
+      "effective_from": "2026-04-01",
+      "effective_to": "2027-03-31",
+      "vendor_categories": ["Agent", "Broker"],
+      "expense_categories": ["Sales Commission", "Marketing Agency Fees"]
+    },
+    {
+      "section_code": "194I",
+      "description": "Rent for Land, Building, Furniture, or Fittings",
+      "rate_with_pan": 10.0,
+      "rate_without_pan": 20.0,
+      "single_threshold": 240000.0,
+      "aggregate_threshold": 240000.0,
+      "effective_from": "2026-04-01",
+      "effective_to": "2027-03-31",
+      "vendor_categories": ["Landlord", "Property Owner"],
+      "expense_categories": ["Rent", "Lease Payments"]
+    },
+    {
+      "section_code": "194Q",
+      "description": "Purchase of Goods exceeding threshold",
+      "rate_with_pan": 0.1,
+      "rate_without_pan": 5.0,
+      "single_threshold": 5000000.0,
+      "aggregate_threshold": 5000000.0,
+      "effective_from": "2026-04-01",
+      "effective_to": "2027-03-31",
+      "vendor_categories": ["Manufacturer", "Supplier", "Distributor"],
+      "expense_categories": ["Inventory Purchase", "Raw Materials"]
+    },
+    {
+      "section_code": "194A",
+      "description": "Interest other than Interest on Securities",
+      "rate_with_pan": 10.0,
+      "rate_without_pan": 20.0,
+      "single_threshold": 5000.0,
+      "aggregate_threshold": 5000.0,
+      "effective_from": "2026-04-01",
+      "effective_to": "2027-03-31",
+      "vendor_categories": ["Financial Institution", "Lender"],
+      "expense_categories": ["Interest Expense", "Finance Charges"]
+    }
+  ]
+}

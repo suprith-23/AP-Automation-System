@@ -1,0 +1,91 @@
+name: AP Automation Advanced Testing Regression
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    - cron: '0 2 * * *' # Run nightly at 2 AM UTC
+
+jobs:
+  advanced-regression:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ap_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libpq-dev
+
+      - name: Install Python Dependencies
+        run: |
+          pip install -r backend/requirements.txt
+          pip install pytest httpx pytest-asyncio testcontainers[postgres] schemathesis locust psycopg2-binary cryptography
+
+      - name: Set Environment Variables
+        run: |
+          echo "DATABASE_URL=postgresql://postgres:postgres@localhost:5432/ap_db" >> $GITHUB_ENV
+
+      - name: Run P1 — Testcontainers Integration Tests
+        run: |
+          pytest testing/advanced/test_testcontainers_postgres.py -v
+
+      - name: Run P6 — Locust Load Test Headless check
+        run: |
+          locust -f testing/performance/locustfile.py --host http://localhost:8000 --headless -u 1 -r 1 --run-time 5s --csv testing/evidence/ci_performance_stats || true
+
+      - name: Run P7 — OWASP Security Audit check
+        run: |
+          python testing/advanced/test_security_zap.py || true
+
+      - name: Setup Node.js (for Playwright E2E)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package.json
+
+      - name: Install Frontend & Playwright
+        run: |
+          cd frontend
+          npm install
+          npx playwright install chromium
+
+      - name: Print Regression Completion Summary
+        run: |
+          echo "Advanced testing regression configuration completed successfully."

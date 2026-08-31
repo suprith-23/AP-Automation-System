@@ -1,0 +1,87 @@
+{
+  "tds": {
+    "sections": {
+      "194C": {
+        "description": "Payments to Contractors",
+        "rate_with_pan": 0.01,
+        "rate_without_pan": 0.20,
+        "single_threshold": 30000.0,
+        "aggregate_threshold": 100000.0
+      },
+      "194J": {
+        "description": "Professional or Technical Services",
+        "rate_with_pan": 0.10,
+        "rate_without_pan": 0.20,
+        "single_threshold": 30000.0,
+        "aggregate_threshold": 30000.0
+      },
+      "194I": {
+        "description": "Rent for Land, Building, Furniture, or Fittings",
+        "rate_with_pan": 0.10,
+        "rate_without_pan": 0.20,
+        "single_threshold": 240000.0,
+        "aggregate_threshold": 240000.0
+      }
+    },
+    "vendor_category_mappings": {
+      "Contractor": "194C",
+      "Professional": "194J",
+      "Consultant": "194J",
+      "Technical Service Provider": "194J",
+      "Landlord": "194I"
+    }
+  },
+  "rcm": {
+    "rules": [
+      {
+        "vendor_category": "GTA",
+        "invoice_type": "TAX_INVOICE",
+        "gst_category": "Registered",
+        "rcm_applicable": true,
+        "reason": "Reverse Charge applicable on Goods Transport Agency (GTA) services where supplier did not pay under 12% forward charge."
+      },
+      {
+        "vendor_category": "Legal",
+        "invoice_type": "TAX_INVOICE",
+        "gst_category": "Registered",
+        "rcm_applicable": true,
+        "reason": "Services provided by an individual advocate or firm of advocates by way of legal services are under compulsory reverse charge."
+      },
+      {
+        "vendor_category": "Unregistered",
+        "invoice_type": "TAX_INVOICE",
+        "gst_category": "Unregistered",
+        "rcm_applicable": true,
+        "reason": "Reverse Charge applies to specific procurements from unregistered vendors under CGST Section 9(4)."
+      }
+    ]
+  },
+  "hsn_sac": {
+    "local_lookup": {
+      "9965": {
+        "description": "Goods transport services",
+        "gst_rate": 5.0
+      },
+      "9967": {
+        "description": "Support services in transportation",
+        "gst_rate": 18.0
+      },
+      "9982": {
+        "description": "Legal services",
+        "gst_rate": 18.0
+      },
+      "9963": {
+        "description": "Accommodation, food and beverage services",
+        "gst_rate": 18.0
+      },
+      "9968": {
+        "description": "Postal and courier services",
+        "gst_rate": 18.0
+      },
+      "8703": {
+        "description": "Motor vehicles",
+        "gst_rate": 28.0
+      }
+    }
+  }
+}

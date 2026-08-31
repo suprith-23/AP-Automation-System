@@ -1,0 +1,9 @@
+{
+  "cache_ttl_seconds": 30.0,
+  "aging_buckets": [
+    { "min_days": 0, "max_days": 30, "label": "0-30 Days" },
+    { "min_days": 31, "max_days": 60, "label": "31-60 Days" },
+    { "min_days": 61, "max_days": 90, "label": "61-90 Days" },
+    { "min_days": 91, "max_days": null, "label": "90+ Days" }
+  ]
+}

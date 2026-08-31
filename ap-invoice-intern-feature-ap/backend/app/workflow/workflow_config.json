@@ -1,0 +1,5 @@
+{
+  "min_validation_score": 90.0,
+  "min_match_score": 90.0,
+  "min_extraction_confidence": 0.85
+}

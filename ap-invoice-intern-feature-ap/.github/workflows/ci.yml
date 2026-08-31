@@ -1,0 +1,68 @@
+name: AP Automation Platform CI
+
+on:
+  push:
+    branches: [ main, master, dev ]
+  pull_request:
+    branches: [ main, master, dev ]
+
+jobs:
+  lint-and-format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'  # Must match backend/Dockerfile python version
+          cache: 'pip'
+
+      - name: Install Linting Tools
+        run: |
+          pip install black isort flake8 bandit
+
+      - name: Run Black formatter check
+        run: black --check backend/app
+
+      - name: Run Isort import order check
+        run: isort --check-only backend/app
+
+      - name: Run Flake8 linter
+        run: flake8 backend/app --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Run Bandit security scanner
+        run: bandit -r backend/app -x backend/app/tests
+
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'  # Must match backend/Dockerfile python version
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install -r backend/requirements.txt pytest httpx pytest-asyncio mock redis python-json-logger prometheus-client
+
+      - name: Run Unit Tests
+        run: |
+          pytest testing/unit
+
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Backend Image
+        run: docker build -t ap_backend:test ./backend
+
+      - name: Build Frontend Image
+        run: docker build -t ap_frontend:test ./frontend

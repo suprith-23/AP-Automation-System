@@ -1,0 +1,13 @@
+{
+  "stages": {
+    "UPLOADED": { "max_duration_hours": 2, "escalation_role": "Admin" },
+    "EXTRACTED": { "max_duration_hours": 4, "escalation_role": "Admin" },
+    "VALIDATED": { "max_duration_hours": 8, "escalation_role": "Approver" },
+    "MATCHED": { "max_duration_hours": 12, "escalation_role": "Approver" },
+    "PENDING_APPROVAL": { "max_duration_hours": 24, "escalation_role": "Approver" }
+  },
+  "escalation_policy": {
+    "grace_period_hours": 2,
+    "automatic_reminder": true
+  }
+}

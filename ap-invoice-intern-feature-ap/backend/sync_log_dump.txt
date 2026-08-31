@@ -1,0 +1,20 @@
+--- ALL ERP SYNC LOGS DUMP ---
+ID: 19, Inv ID: 8, System: odoo, Status: FAILED, Ref: None, Error: Odoo authentication failed: Invalid credentials or database name.
+ID: 18, Inv ID: 8, System: odoo, Status: FAILED, Ref: None, Error: Odoo authentication failed: Invalid credentials or database name.
+ID: 17, Inv ID: 8, System: odoo, Status: SUCCESS, Ref: None, Error: None
+ID: 16, Inv ID: 8, System: odoo, Status: SUCCESS, Ref: None, Error: None
+ID: 15, Inv ID: 8, System: odoo, Status: SUCCESS, Ref: None, Error: None
+ID: 14, Inv ID: 8, System: odoo, Status: SUCCESS, Ref: None, Error: None
+ID: 13, Inv ID: 4, System: odoo, Status: FAILED, Ref: None, Error: Odoo authentication failed: Invalid credentials or database name.
+ID: 12, Inv ID: 4, System: odoo, Status: FAILED, Ref: None, Error: Odoo authentication failed: Invalid credentials or database name.
+ID: 11, Inv ID: 4, System: odoo, Status: FAILED, Ref: None, Error: Odoo authentication failed: Invalid credentials or database name.
+ID: 10, Inv ID: 4, System: odoo, Status: FAILED, Ref: None, Error: Odoo authentication failed: Invalid credentials or database name.
+ID: 9, Inv ID: 8, System: odoo, Status: SUCCESS, Ref: None, Error: None
+ID: 8, Inv ID: 8, System: odoo, Status: SUCCESS, Ref: None, Error: None
+ID: 7, Inv ID: 6, System: odoo, Status: SUCCESS, Ref: 2, Error: None
+ID: 6, Inv ID: 6, System: odoo, Status: SUCCESS, Ref: 2, Error: None
+ID: 5, Inv ID: 4, System: odoo, Status: SUCCESS, Ref: 1, Error: None
+ID: 4, Inv ID: 4, System: odoo, Status: SUCCESS, Ref: None, Error: None
+ID: 3, Inv ID: 4, System: odoo, Status: SUCCESS, Ref: None, Error: None
+ID: 2, Inv ID: 4, System: odoo, Status: SUCCESS, Ref: None, Error: None
+ID: 1, Inv ID: 4, System: odoo, Status: SUCCESS, Ref: None, Error: None

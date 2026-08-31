@@ -1,0 +1,27 @@
+# Pinned backend dependencies — generated from production venv (Python 3.12)
+# To regenerate: pip-compile requirements.in  OR  uv pip compile requirements.in -o requirements.txt
+# Do NOT edit versions by hand; regenerate from the .in file instead.
+fastapi==0.136.3
+uvicorn==0.49.0
+sqlalchemy==2.0.50
+psycopg2-binary==2.9.12
+python-dotenv==1.2.2
+alembic==1.18.4
+python-multipart==0.0.32
+pypdf==6.13.2
+pdf2image==1.17.0
+opencv-python-headless==4.13.0.92
+httpx==0.28.1
+docling==2.102.1
+rapidocr-onnxruntime==1.4.4
+prometheus-fastapi-instrumentator==8.0.2
+python-json-logger==4.1.0
+bcrypt==5.0.0
+PyJWT==2.13.0
+email-validator==2.3.0
+celery==5.6.3
+redis==8.0.1
+cryptography==42.0.5
+boto3==1.38.36
+
+

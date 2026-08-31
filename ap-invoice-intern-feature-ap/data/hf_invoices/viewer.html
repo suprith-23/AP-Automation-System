@@ -1,0 +1,351 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Invoice Viewer</title>
+        <style>
+            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; color: #333; }
+            .container { max-width: 1400px; margin: 0 auto; }
+            h1 { text-align: center; color: #2c3e50; }
+            .invoice-card { display: flex; background: white; margin-bottom: 40px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+            .image-pane { flex: 1; padding: 20px; background: #fafafa; border-right: 1px solid #eee; text-align: center; }
+            .image-pane img { max-width: 100%; height: auto; border: 1px solid #ddd; max-height: 800px; object-fit: contain; }
+            .data-pane { flex: 1; padding: 30px; }
+            .data-pane h2 { margin-top: 0; border-bottom: 2px solid #3498db; padding-bottom: 10px; color: #2980b9; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd; }
+            th { background-color: #f8f9fa; color: #495057; width: 40%; font-weight: 600; }
+            td { color: #212529; }
+            .confirmed-badge { display: inline-block; background: #2ecc71; color: white; padding: 5px 10px; border-radius: 20px; font-size: 0.8em; font-weight: bold; margin-left: 10px; vertical-align: middle; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Extracted Invoices</h1>
+    
+            <div class="invoice-card">
+                <div class="image-pane">
+                    <img src="images/invoice_0.jpg" alt="Invoice 0">
+                </div>
+                <div class="data-pane">
+                    <h2>Invoice 0 <span class="confirmed-badge">✓ Confirmed</span></h2>
+                    <table>
+                        <tbody>
+        
+                            <tr>
+                                <th>Invoice Number</th>
+                                <td>N/A</td>
+                            </tr>
+            
+                            <tr>
+                                <th>Invoice Date</th>
+                                <td>25-09-2020</td>
+                            </tr>
+            
+                            <tr>
+                                <th>GSTIN</th>
+                                <td>27AAACH1201R1ZN</td>
+                            </tr>
+            
+                            <tr>
+                                <th>PAN</th>
+                                <td>AAACH1201R</td>
+                            </tr>
+            
+                            <tr>
+                                <th>HSN Code</th>
+                                <td>N/A</td>
+                            </tr>
+            
+                            <tr>
+                                <th>CGST</th>
+                                <td>N/A</td>
+                            </tr>
+            
+                            <tr>
+                                <th>SGST</th>
+                                <td>N/A</td>
+                            </tr>
+            
+                            <tr>
+                                <th>IGST</th>
+                                <td>N/A</td>
+                            </tr>
+            
+                            <tr>
+                                <th>Grand Total</th>
+                                <td>9217.26</td>
+                            </tr>
+            
+                            <tr>
+                                <th>Purchase Order Number</th>
+                                <td>851893966</td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+            <div class="invoice-card">
+                <div class="image-pane">
+                    <img src="images/invoice_1.jpg" alt="Invoice 1">
+                </div>
+                <div class="data-pane">
+                    <h2>Invoice 1 <span class="confirmed-badge">✓ Confirmed</span></h2>
+                    <table>
+                        <tbody>
+        
+                            <tr>
+                                <th>Invoice Number</th>
+                                <td>VST/783</td>
+                            </tr>
+            
+                            <tr>
+                                <th>Invoice Date</th>
+                                <td>12-07-2022</td>
+                            </tr>
+            
+                            <tr>
+                                <th>GSTIN</th>
+                                <td>29AAACH1201R2Z</td>
+                            </tr>
+            
+                            <tr>
+                                <th>PAN</th>
+                                <td>N/A</td>
+                            </tr>
+            
+                            <tr>
+                                <th>HSN Code</th>
+                                <td>N/A</td>
+                            </tr>
+            
+                            <tr>
+                                <th>CGST</th>
+                                <td>547.20</td>
+                            </tr>
+            
+                            <tr>
+                                <th>SGST</th>
+                                <td>547.20</td>
+                            </tr>
+            
+                            <tr>
+                                <th>IGST</th>
+                                <td>N/A</td>
+                            </tr>
+            
+                            <tr>
+                                <th>Grand Total</th>
+                                <td>7174.00</td>
+                            </tr>
+            
+                            <tr>
+                                <th>Purchase Order Number</th>
+                                <td>13542310381</td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+            <div class="invoice-card">
+                <div class="image-pane">
+                    <img src="images/invoice_2.jpg" alt="Invoice 2">
+                </div>
+                <div class="data-pane">
+                    <h2>Invoice 2 <span class="confirmed-badge">✓ Confirmed</span></h2>
+                    <table>
+                        <tbody>
+        
+                            <tr>
+                                <th>Invoice Number</th>
+                                <td>AMC/2122/FA0019</td>
+                            </tr>
+            
+                            <tr>
+                                <th>Invoice Date</th>
+                                <td>28-09-2021</td>
+                            </tr>
+            
+                            <tr>
+                                <th>GSTIN</th>
+                                <td>27AAACH1201R1ZN</td>
+                            </tr>
+            
+                            <tr>
+                                <th>PAN</th>
+                                <td>AAACB6134D</td>
+                            </tr>
+            
+                            <tr>
+                                <th>HSN Code</th>
+                                <td>87032291</td>
+                            </tr>
+            
+                            <tr>
+                                <th>CGST</th>
+                                <td>N/A</td>
+                            </tr>
+            
+                            <tr>
+                                <th>SGST</th>
+                                <td>N/A</td>
+                            </tr>
+            
+                            <tr>
+                                <th>IGST</th>
+                                <td>N/A</td>
+                            </tr>
+            
+                            <tr>
+                                <th>Grand Total</th>
+                                <td>29922</td>
+                            </tr>
+            
+                            <tr>
+                                <th>Purchase Order Number</th>
+                                <td>N/A</td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+            <div class="invoice-card">
+                <div class="image-pane">
+                    <img src="images/invoice_3.jpg" alt="Invoice 3">
+                </div>
+                <div class="data-pane">
+                    <h2>Invoice 3 <span class="confirmed-badge">✓ Confirmed</span></h2>
+                    <table>
+                        <tbody>
+        
+                            <tr>
+                                <th>Invoice Number</th>
+                                <td>HDA/SAVS/21/1145</td>
+                            </tr>
+            
+                            <tr>
+                                <th>Invoice Date</th>
+                                <td>16/10/2021</td>
+                            </tr>
+            
+                            <tr>
+                                <th>GSTIN</th>
+                                <td>27AAACH1201R1ZN</td>
+                            </tr>
+            
+                            <tr>
+                                <th>PAN</th>
+                                <td>AAACH1201R</td>
+                            </tr>
+            
+                            <tr>
+                                <th>HSN Code</th>
+                                <td>87032291</td>
+                            </tr>
+            
+                            <tr>
+                                <th>CGST</th>
+                                <td>130186.01</td>
+                            </tr>
+            
+                            <tr>
+                                <th>SGST</th>
+                                <td>130186.01</td>
+                            </tr>
+            
+                            <tr>
+                                <th>IGST</th>
+                                <td>0.00</td>
+                            </tr>
+            
+                            <tr>
+                                <th>Grand Total</th>
+                                <td>971280.00</td>
+                            </tr>
+            
+                            <tr>
+                                <th>Purchase Order Number</th>
+                                <td>N/A</td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+            <div class="invoice-card">
+                <div class="image-pane">
+                    <img src="images/invoice_4.jpg" alt="Invoice 4">
+                </div>
+                <div class="data-pane">
+                    <h2>Invoice 4 <span class="confirmed-badge">✓ Confirmed</span></h2>
+                    <table>
+                        <tbody>
+        
+                            <tr>
+                                <th>Invoice Number</th>
+                                <td>227/2019-2020</td>
+                            </tr>
+            
+                            <tr>
+                                <th>Invoice Date</th>
+                                <td>5th June 2019</td>
+                            </tr>
+            
+                            <tr>
+                                <th>GSTIN</th>
+                                <td>27AAACH1201R1ZN</td>
+                            </tr>
+            
+                            <tr>
+                                <th>PAN</th>
+                                <td>AACPK9036G</td>
+                            </tr>
+            
+                            <tr>
+                                <th>HSN Code</th>
+                                <td>N/A</td>
+                            </tr>
+            
+                            <tr>
+                                <th>CGST</th>
+                                <td>N/A</td>
+                            </tr>
+            
+                            <tr>
+                                <th>SGST</th>
+                                <td>N/A</td>
+                            </tr>
+            
+                            <tr>
+                                <th>IGST</th>
+                                <td>13,81,105.16</td>
+                            </tr>
+            
+                            <tr>
+                                <th>Grand Total</th>
+                                <td>13,81,105.16</td>
+                            </tr>
+            
+                            <tr>
+                                <th>Purchase Order Number</th>
+                                <td>N/A</td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+        </div>
+    </body>
+    </html>
+    

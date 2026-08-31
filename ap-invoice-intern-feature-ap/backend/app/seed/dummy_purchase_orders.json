@@ -1,0 +1,26 @@
+[
+  {
+    "po_number": "PO-2026-001",
+    "vendor_name": "Acme Widgets Ltd",
+    "vendor_gstin": "29AACME1234A1Z1",
+    "po_amount": 1080.00,
+    "po_date": "2026-04-28",
+    "status": "approved"
+  },
+  {
+    "po_number": "PO-2026-002",
+    "vendor_name": "Global Services Inc",
+    "vendor_gstin": "29AGLOB1234B1Z2",
+    "po_amount": 3000.00,
+    "po_date": "2026-05-05",
+    "status": "open"
+  },
+  {
+    "po_number": "PO-2026-003",
+    "vendor_name": "Star Fuel Cells",
+    "vendor_gstin": "29ASTAR1234C1Z3",
+    "po_amount": 5400.00,
+    "po_date": "2026-05-12",
+    "status": "closed"
+  }
+]

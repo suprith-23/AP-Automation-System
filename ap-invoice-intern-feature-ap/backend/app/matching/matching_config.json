@@ -1,0 +1,6 @@
+{
+  "amount_tolerance": 0.02,
+  "vendor_name_threshold": 0.85,
+  "default_currency": "INR",
+  "min_match_score": 80.0
+}

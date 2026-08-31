@@ -1,0 +1,40 @@
+{
+  "rules": [
+    {
+      "rule_id": "RCM_GTA",
+      "vendor_category": "GTA",
+      "supplier_gst_status": "Registered",
+      "invoice_type": "TAX_INVOICE",
+      "hsn_prefixes": ["9965", "9967"],
+      "expense_categories": ["Logistics", "Transportation"],
+      "rcm_applicable": true,
+      "section": "Section 9(3) of CGST Act",
+      "reason": "Compulsory Reverse Charge applicable on Goods Transport Agency (GTA) services where forward charge is not opted by supplier.",
+      "recommendation": "Accrue CGST and SGST/IGST under RCM and claim ITC if eligible."
+    },
+    {
+      "rule_id": "RCM_LEGAL",
+      "vendor_category": "Legal",
+      "supplier_gst_status": "Registered",
+      "invoice_type": "TAX_INVOICE",
+      "hsn_prefixes": ["9982"],
+      "expense_categories": ["Legal", "Professional Services"],
+      "rcm_applicable": true,
+      "section": "Section 9(3) of CGST Act",
+      "reason": "Services provided by advocates or law firms are subject to compulsory reverse charge.",
+      "recommendation": "Pay GST under reverse charge and claim input tax credit."
+    },
+    {
+      "rule_id": "RCM_UNREGISTERED",
+      "vendor_category": "Unregistered",
+      "supplier_gst_status": "Unregistered",
+      "invoice_type": "TAX_INVOICE",
+      "hsn_prefixes": [],
+      "expense_categories": [],
+      "rcm_applicable": true,
+      "section": "Section 9(4) of CGST Act",
+      "reason": "Procurement of specified goods/services from unregistered suppliers by specified class of registered persons.",
+      "recommendation": "Accrue RCM GST dynamically on purchase from unregistered suppliers."
+    }
+  ]
+}

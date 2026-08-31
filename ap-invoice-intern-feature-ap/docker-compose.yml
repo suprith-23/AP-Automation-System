@@ -1,0 +1,279 @@
+services:
+
+  # PostgreSQL Database Container
+  postgres:
+    image: postgres:16
+
+    # Container name in Docker Desktop
+    container_name: ap_postgres
+
+    # Restart container automatically
+    restart: always
+
+    # Load environment variables from root .env
+    env_file:
+      - .env
+
+    # Resource limits — keep Postgres stable even under heavy backend load
+    mem_limit: 1g
+    cpus: "0.75"
+
+    # Persist database data
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    # Map database port to host for local debugging/benchmarking
+    ports:
+      - "5432:5432"
+
+    # Connect to the shared project network
+    networks:
+      - ap_network
+
+    # Check database health before backend starts
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+
+  # FastAPI Backend Container
+  backend:
+    build:
+
+      # Backend Dockerfile location
+      context: ./backend
+
+    # Container name in Docker Desktop
+    container_name: ap_backend
+
+    # Restart backend automatically
+    restart: always
+
+    # Load environment variables
+    env_file:
+      - .env
+
+    # Resource limits — Docling + RapidOCR are heavy; cap so OOM doesn't kill Postgres
+    mem_limit: 4g
+    cpus: "2.0"
+
+    # Map backend port
+    ports:
+      - "${BACKEND_PORT}:8000"
+
+    # Sync backend files
+    volumes:
+      - ./backend:/app
+
+    # Connect to the shared project network
+    networks:
+      - ap_network
+
+    # Start backend after PostgreSQL becomes healthy
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    # Start FastAPI server
+    command: >
+      uvicorn app.main:app
+      --host 0.0.0.0
+      --port 8000
+      --reload
+
+
+
+  # Next.js Frontend Container
+  frontend:
+    build:
+
+      # Frontend Dockerfile location
+      context: ./frontend
+
+    # Container name in Docker Desktop
+    container_name: ap_frontend
+
+    # Restart frontend automatically
+    restart: always
+
+    # Load environment variables
+    env_file:
+      - .env
+
+    # Map frontend port
+    ports:
+      - "${FRONTEND_PORT}:3000"
+
+    # Sync frontend files
+    volumes:
+      - ./frontend:/app
+
+      # Named volume keeps node_modules inside the container filesystem.
+      # This prevents the host ./frontend/node_modules (Windows) from
+      # overwriting the Linux container's node_modules on bind-mount.
+      - frontend_node_modules:/app/node_modules
+
+      # Isolate Next.js build cache from host disk for fast compiler hot-reloads
+      - frontend_next:/app/.next
+
+    # Connect to the shared project network
+    networks:
+      - ap_network
+
+    # Start frontend after backend
+    depends_on:
+      - backend
+
+    # Start Next.js development server with Turbopack for instant page loads
+    command: npm run dev
+
+  # Prometheus Metrics Server
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: ap_prometheus
+    restart: always
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./backend/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - ap_network
+
+  # Grafana Dashboards
+  grafana:
+    image: grafana/grafana:latest
+    container_name: ap_grafana
+    restart: always
+    ports:
+      - "3001:3000"
+    depends_on:
+      - prometheus
+    volumes:
+      - ./backend/grafana/provisioning:/etc/grafana/provisioning
+      - ./backend/grafana/dashboards:/var/lib/grafana/dashboards
+    networks:
+      - ap_network
+
+  # Redis Broker for Celery and Centralized Rate Limiting
+  redis:
+    image: redis:7-alpine
+    container_name: ap_redis
+    restart: always
+    # Resource limits — lightweight broker; small cap is sufficient
+    mem_limit: 512m
+    cpus: "0.50"
+    ports:
+      - "6379:6379"
+    networks:
+      - ap_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Celery Background Worker
+  celery_worker:
+    build:
+      context: ./backend
+    container_name: ap_celery_worker
+    restart: always
+    env_file:
+      - .env
+    # Resource limits — worker also runs Docling/OCR; match backend caps
+    mem_limit: 4g
+    cpus: "2.0"
+    volumes:
+      - ./backend:/app
+    networks:
+      - ap_network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: celery -A app.workers.celery_app worker --loglevel=info --concurrency=1
+
+  # Celery Beat Scheduler
+  celery_beat:
+    build:
+      context: ./backend
+    container_name: ap_celery_beat
+    restart: always
+    env_file:
+      - .env
+    # Resource limits — Beat only schedules tasks, very light
+    mem_limit: 256m
+    cpus: "0.25"
+    volumes:
+      - ./backend:/app
+    networks:
+      - ap_network
+    depends_on:
+      redis:
+        condition: service_healthy
+    command: celery -A app.workers.celery_app beat --loglevel=info
+
+  # MinIO Local S3 compatible Object Storage
+  minio:
+    # Pinned to a specific release to prevent surprise breaking changes on rebuild.
+    # To upgrade: verify the release notes at https://github.com/minio/minio/releases
+    # then update the tag here and in .env.example.
+    image: minio/minio:RELEASE.2024-06-06T09-36-42Z
+    container_name: ap_minio
+    restart: always
+    # Resource limits — object storage; moderate cap
+    mem_limit: 1g
+    cpus: "0.50"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin}
+    networks:
+      - ap_network
+    command: server /data --console-address ":9001"
+
+  # GreenMail Standalone mock email server (SMTP, IMAP)
+  greenmail:
+    image: greenmail/standalone:2.1.0
+    container_name: ap_greenmail
+    restart: always
+    ports:
+      - "3025:3025" # SMTP
+      - "3110:3110" # POP3
+      - "3143:3143" # IMAP (non-SSL)
+      - "3993:3993" # IMAPS (SSL)
+      - "8085:8080" # Web API / UI (Updated to avoid conflict on 8080)
+    environment:
+      # Pre-create test mailbox
+      GREENMAIL_OPTS: "${GREENMAIL_OPTS}"
+    networks:
+      - ap_network
+
+# Persistent Docker Volumes
+volumes:
+
+  # PostgreSQL storage
+  postgres_data:
+
+  # Frontend container node_modules — named so it persists across restarts
+  # but is NOT shared with the host, preventing Windows/Linux ABI conflicts.
+  # To force a clean reinstall: docker volume rm <project>_frontend_node_modules
+  frontend_node_modules:
+
+  # Next.js build cache — isolated from host for fast hot-reloads
+  frontend_next:
+
+
+# Shared network for all containers in this stack
+networks:
+
+  # Named network to avoid relying on Docker Compose's default network
+  ap_network:
+    name: ap_automation_network
+    driver: bridge

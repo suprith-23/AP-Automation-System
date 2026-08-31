@@ -1,0 +1,167 @@
+=== INVOICE ID: 4 ===
+Invoice Number: NEXO 32033
+399
+Seller Name: FEET MAX
+Total Amount: 509.1
+Taxable Value: 445.06
+
+=== EXTRACTED JSON ===
+{
+  "type_of_invoice": "TAX_INVOICE",
+  "irn": null,
+  "po_number": null,
+  "invoice_number": "NEXO 32033\n399",
+  "invoice_date": "2026-03-15",
+  "due_date": null,
+  "seller_name": "FEET MAX",
+  "seller_gstin": "29AAHFF6531E1ZG",
+  "seller_gstin_pincode": 560099,
+  "buyer_name": null,
+  "buyer_gstin": null,
+  "buyer_gstin_pincode": 0,
+  "shipping_gstin": null,
+  "shipping_gstin_pincode": 0,
+  "currency": null,
+  "total_taxable_value": 445.06,
+  "total_gst_rate": 0.0,
+  "total_cgst_value": 32.02,
+  "total_sgst_value": 32.02,
+  "total_igst_value": 0.0,
+  "total_ces_value": 0.0,
+  "total_st_ces_value": 0.0,
+  "total_discount_value": 304.0,
+  "round_off_amount": 0.0,
+  "total_invoice_value": 509.1,
+  "items": [
+    {
+      "item_number": 1,
+      "sl_no": "1",
+      "is_service": "N",
+      "description": "CHAPAL NEXO 32033",
+      "hsn_code": "",
+      "quantity": 1.0,
+      "unit": "PCS",
+      "unit_price": 355.0,
+      "total_amount": 355.0,
+      "discount": 0.0,
+      "assessable_value": 0.0,
+      "gst_rate": 5.0,
+      "igst_amount": 0.0,
+      "cgst_amount": 17.75,
+      "sgst_amount": 17.75,
+      "cess_rate": 0.0,
+      "cess_amount": 0.0,
+      "cess_non_advalorem_amount": 0.0,
+      "state_cess_rate": 0.0,
+      "state_cess_amount": 0.0,
+      "other_charges": 0.0,
+      "total_item_value": 355.0,
+      "item_barcode": null
+    },
+    {
+      "item_number": 2,
+      "sl_no": "2",
+      "is_service": "N",
+      "description": "CHAPAL STARDO 32482",
+      "hsn_code": "",
+      "quantity": 1.0,
+      "unit": "PCS",
+      "unit_price": 90.06,
+      "total_amount": 90.06,
+      "discount": 0.0,
+      "assessable_value": 0.0,
+      "gst_rate": 5.0,
+      "igst_amount": 0.0,
+      "cgst_amount": 4.5,
+      "sgst_amount": 4.5,
+      "cess_rate": 0.0,
+      "cess_amount": 0.0,
+      "cess_non_advalorem_amount": 0.0,
+      "state_cess_rate": 0.0,
+      "state_cess_amount": 0.0,
+      "other_charges": 0.0,
+      "total_item_value": 90.06,
+      "item_barcode": null
+    }
+  ],
+  "total_accessment_value": 1280.95,
+  "total_tax_amount": 64.04,
+  "subtotal": 445.06,
+  "ocr_duration_ms": 19984.316503999937,
+  "llm_duration_ms": 3395.5352099999345,
+  "total_duration_ms": 23433.467114999985
+}
+
+=== RAW OCR TEXT ===
+GSTIN:29AAHFF6531E1ZG
+TAX INVOICE
+FEET MAX
+Invoice N
+L15584
+YVS Tower, # 522/360, Ground Floor, Anekal Road
+power in style
+Date
+15/03/2026
+Opp. Bescom, Chandapura, Bengaluru - 560 099.
+Customer
+Mob.: 99808 17736 E-mail : feeAx292H@gBa.tom
+Details
+Sales Man :13192
+Telephone No :
+GSTIN :
+SI.
+HSN
+Item Description
+No
+Code
+MRP
+GST
+Quantity
+Rate
+Total
+%
+1
+CHAPAL NEXO 32033
+399.00
+5
+1.000
+355.00
+355.00
+2
+CHAPAL STARDO 32482
+1250.00
+5
+1.000
+90.060
+00.066
+Tax Details
+1649.00
+Total
+1,345.00
+GST %
+Taxable
+GST
+CGST
+SGST
+IGST
+5.0
+1280.95
+64.05
+32.02
+32.02
+0.00
+YOU HAVE SAVED:
+304.00
+Return
+Total
+1280.95
+64.05
+32.02
+32.02
+0.00
+Cash Discount
+AMOUNT IN WORDS : ONE THOUSAND
+THREE HUNDRED AND FORTY FIVE Only
+Net Amount
+1345.00
+otal Ouantity :

@@ -1,0 +1,12 @@
+{
+  "tolerance_amount": 1.0,
+  "reconciliation_threshold_percentage": 98.0,
+  "hsn_sac_rates": {
+    "9965": 5.0,
+    "9967": 18.0,
+    "9982": 18.0,
+    "9963": 18.0,
+    "9968": 18.0,
+    "8703": 28.0
+  }
+}

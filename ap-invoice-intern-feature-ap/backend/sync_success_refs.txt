@@ -1,0 +1,13 @@
+Log ID: 5, Inv ID: 4, Ext Ref (Odoo ID): 1, Timestamp: 2026-08-14 11:00:46.068164
+Log ID: 6, Inv ID: 6, Ext Ref (Odoo ID): 2, Timestamp: 2026-08-14 11:50:16.306353
+Log ID: 7, Inv ID: 6, Ext Ref (Odoo ID): 2, Timestamp: 2026-08-14 12:01:22.681862
+Log ID: 1, Inv ID: 4, Ext Ref (Odoo ID): None, Timestamp: 2026-08-14 10:36:54.417926
+Log ID: 2, Inv ID: 4, Ext Ref (Odoo ID): None, Timestamp: 2026-08-14 10:59:30.764266
+Log ID: 3, Inv ID: 4, Ext Ref (Odoo ID): None, Timestamp: 2026-08-14 10:59:54.749627
+Log ID: 4, Inv ID: 4, Ext Ref (Odoo ID): None, Timestamp: 2026-08-14 11:00:18.241858
+Log ID: 8, Inv ID: 8, Ext Ref (Odoo ID): None, Timestamp: 2026-08-15 15:44:14.771342
+Log ID: 9, Inv ID: 8, Ext Ref (Odoo ID): None, Timestamp: 2026-08-15 16:05:30.035645
+Log ID: 15, Inv ID: 8, Ext Ref (Odoo ID): None, Timestamp: 2026-08-15 16:27:48.059236
+Log ID: 16, Inv ID: 8, Ext Ref (Odoo ID): None, Timestamp: 2026-08-15 16:52:48.856910
+Log ID: 17, Inv ID: 8, Ext Ref (Odoo ID): None, Timestamp: 2026-08-15 16:52:51.206800
+Log ID: 14, Inv ID: 8, Ext Ref (Odoo ID): None, Timestamp: 2026-08-15 16:27:46.257184

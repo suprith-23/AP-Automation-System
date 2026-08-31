@@ -1,0 +1,37 @@
+{
+  "rules": [
+    {
+      "min_amount": 0.0,
+      "max_amount": 50000.0,
+      "department": null,
+      "vendor_category": null,
+      "risk_level": "LOW",
+      "min_confidence": 0.70,
+      "auto_approve": true,
+      "approvers": ["Approver"],
+      "sla_hours": 24
+    },
+    {
+      "min_amount": 50000.0,
+      "max_amount": 500000.0,
+      "department": "Finance",
+      "vendor_category": null,
+      "risk_level": "MEDIUM",
+      "min_confidence": 0.75,
+      "auto_approve": false,
+      "approvers": ["Approver"],
+      "sla_hours": 48
+    },
+    {
+      "min_amount": 500000.0,
+      "max_amount": null,
+      "department": null,
+      "vendor_category": null,
+      "risk_level": "HIGH",
+      "min_confidence": 0.80,
+      "auto_approve": false,
+      "approvers": ["Approver"],
+      "sla_hours": 72
+    }
+  ]
+}
